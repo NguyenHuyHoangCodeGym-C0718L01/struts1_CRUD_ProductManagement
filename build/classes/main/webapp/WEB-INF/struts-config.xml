@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="user" type="com.huyhoang.model.User" />
+	</form-beans>
+	<action-mappings>
+		<action path="/hello" type="com.huyhoang.action.UserAction"
+			name="user">
+			<forward name="success" path="/hello.jsp"></forward>
+		</action>
+		<action path="/welcome"
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="/welcome.jsp">
+		</action>
+		<!-- <action path="/user" type="com.huyhoang.action.UserDispatchAction"
+		name="user" parameter="m">
+		<forward name="addUser" path="/user/addUser.jsp"></forward>
+		<forward name="deleteUser" path="/user/deleteUser.jsp"></forward>
+		<forward name="updateUser" path="/user/updateUser.jsp"></forward>
+		<forward name="viewUser" path="/user/viewUser.jsp"></forward>
+		</action> -->
+		<action path="/add-user" type="com.huyhoang.action.UserMappingDispatchAction"
+		 parameter="addUser">
+			<forward name="addUser" path="/user/addUser.jsp"></forward>
+		</action>
+		<action path="/delete-user" type="com.huyhoang.action.UserMappingDispatchAction"
+			name="user" parameter="deleteUser">
+			<forward name="deleteUser" path="/user/deleteUser.jsp"></forward>
+		</action>
+		<action path="/update-user" type="com.huyhoang.action.UserMappingDispatchAction"
+			name="user" parameter="updateUser">
+			<forward name="updateUser" path="/user/updateUser.jsp"></forward>
+		</action>
+		<action path="/view-user" type="com.huyhoang.action.UserMappingDispatchAction"
+			name="user" parameter="viewUser" validate="true" input="/user/addUser.jsp">
+			<forward name="viewUser" path="/user/viewUser.jsp"></forward>
+		</action>
+	</action-mappings>
+	<message-resources parameter="messages"></message-resources>
+</struts-config>
